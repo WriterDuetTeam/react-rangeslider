@@ -98,7 +98,7 @@ class Slider extends Component {
     const handlePos = this.handle[`offset${dimension}`];
 
     this.setState({
-      limit: (sliderPos - handlePos) * (extendedMax / max),
+      limit: sliderPos - handlePos,
       grab: handlePos / 2,
     });
   };
@@ -214,7 +214,7 @@ class Slider extends Component {
   getValueFromPosition = (pos) => {
     const { limit } = this.state;
     const { orientation, min, max, extendedMax, step } = this.props;
-    const percentage = clamp(pos, 0, limit) / (limit || 1);
+    const percentage = clamp(pos, 0, extendedMax) / (limit || 1);
     const baseVal = step * Math.round((percentage * (max - min)) / step);
     const value = orientation === "horizontal" ? baseVal + min : max - baseVal;
 
