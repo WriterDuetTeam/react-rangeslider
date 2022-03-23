@@ -30,6 +30,7 @@ class Slider extends Component {
   static propTypes = {
     min: PropTypes.number,
     max: PropTypes.number,
+    extendedMax: PropTypes.number,
     step: PropTypes.number,
     value: PropTypes.number,
     orientation: PropTypes.string,
@@ -169,13 +170,13 @@ class Slider extends Component {
   handleKeyDown = e => {
     e.preventDefault()
     const { keyCode } = e
-    const { value, min, max, step, onChange } = this.props
+    const { value, min, max, extendedMax, step, onChange } = this.props
     let sliderValue
 
     switch (keyCode) {
       case 38:
       case 39:
-        sliderValue = value + step > max ? max : value + step
+        sliderValue = value + step > extendedMax ? extendedMax : value + step
         onChange && onChange(sliderValue, e)
         break
       case 37:
@@ -209,12 +210,12 @@ class Slider extends Component {
    */
   getValueFromPosition = pos => {
     const { limit } = this.state
-    const { orientation, min, max, step } = this.props
+    const { orientation, min, max, extendedMax, step } = this.props
     const percentage = clamp(pos, 0, limit) / (limit || 1)
     const baseVal = step * Math.round(percentage * (max - min) / step)
     const value = orientation === 'horizontal' ? baseVal + min : max - baseVal
 
-    return clamp(value, min, max)
+    return clamp(value, min, extendedMax)
   };
 
   /**
