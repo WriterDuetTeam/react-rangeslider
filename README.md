@@ -26,7 +26,12 @@
   </a>
 </p>
 
+## Note from Guy about the WriterDuet version
+
+I didn't know how to make it build when it installed (I tried adding an "install" script inside package.json that ran build:lib, but the build was failing because something wasn't installed), so if you want to update this either fix that to make it self-build when installed OR (what I did) just run `npm run build:lib` after making changes to the code and commit that, since I made `lib` no longer .gitignore
+
 ## Installation
+
 Using `npm` (use `--save` to include it in your package.json)
 
 ```bash
@@ -39,21 +44,21 @@ Using `yarn` (this command also adds react-rangeslider to your package.json depe
 $ yarn add react-rangeslider
 ```
 
-
 ## Getting Started
+
 React-Rangeslider is bundled with a slider component & default styles which can be overridden depending on your design requirements.
 
 With a module bundler like webpack that supports either CommonJS or ES2015 modules, use as you would anything else:
 
 ```js
 // Using an ES6 transpiler like Babel
-import Slider from 'react-rangeslider'
+import Slider from "react-rangeslider";
 
 // To include the default styles
-import 'react-rangeslider/lib/index.css'
+import "react-rangeslider/lib/index.css";
 
 // Not using an ES6 transpiler
-var Slider = require('react-rangeslider')
+var Slider = require("react-rangeslider");
 ```
 
 The UMD build is also available on [unpkg][unpkg]:
@@ -63,51 +68,57 @@ The UMD build is also available on [unpkg][unpkg]:
 ```
 
 You can find the library on `window.ReactRangeslider`. Optionally you can drop in the default styles by adding the stylesheet.
+
 ```html
-<link rel="stylesheet" href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
+/>
 ```
+
 Check out [docs & examples](https://whoisandy.github.io/react-rangeslider).
 
 ## Basic Example
 
 ```jsx
-import React, { Component } from 'react'
-import Slider from 'react-rangeslider'
+import React, { Component } from "react";
+import Slider from "react-rangeslider";
 
 class VolumeSlider extends Component {
   constructor(props, context) {
-    super(props, context)
+    super(props, context);
     this.state = {
-      volume: 0
-    }
+      volume: 0,
+    };
   }
 
   handleOnChange = (value) => {
     this.setState({
-      volume: value
-    })
-  }
+      volume: value,
+    });
+  };
 
   render() {
-    let { volume } = this.state
+    let { volume } = this.state;
     return (
       <Slider
         value={volume}
         orientation="vertical"
         onChange={this.handleOnChange}
       />
-    )
+    );
   }
 }
 ```
 
-
 ## API
+
 Rangeslider is bundled as a single component, that accepts data and callbacks only as `props`.
 
 ### Component
+
 ```jsx
-import Slider from 'react-rangeslider'
+import Slider from "react-rangeslider";
 
 // inside render
 <Slider
@@ -124,28 +135,29 @@ import Slider from 'react-rangeslider'
   onChangeStart={Function}
   onChange={Function}
   onChangeComplete={Function}
-/>
+/>;
 ```
 
 ### Props
-Prop   	 			 |  Type      |  Default      |  Description
----------   	 |  -------   |  -------      |  -----------
-`min`     		 |  number    |  0				   	|  minimum value the slider can hold
-`max`    			 |  number    |  100				  |  maximum value the slider can hold
-`step` 				 |  number    |  1          	|  step in which increments/decrements have to be made
-`value`        |  number    |               |  current value of the slider
-`orientation`  |  string    |  horizontal   |  orientation of the slider
-`tooltip`      |  boolean   |  true         |  show or hide tooltip
-`reverse`  		 |  boolean   |  false			  |  reverse direction of vertical slider (top-bottom)
-`labels`       |  object    |  {}           |  object containing key-value pairs. `{ 0: 'Low', 50: 'Medium', 100: 'High'}`
-`handleLabel`  |  string    |  ''           |  string label to appear inside slider handles
-`format`     |  function  |               |  function to format and display the value in label or tooltip
-`onChangeStart`  	 |  function  |               |  function gets called whenever the user starts dragging the slider handle
-`onChange`  	 |  function  |               |  function gets called whenever the slider handle is being dragged or clicked
-`onChangeComplete`     |  function  |               |  function gets called whenever the user stops dragging the slider handle.
 
+| Prop               | Type     | Default    | Description                                                                 |
+| ------------------ | -------- | ---------- | --------------------------------------------------------------------------- |
+| `min`              | number   | 0          | minimum value the slider can hold                                           |
+| `max`              | number   | 100        | maximum value the slider can hold                                           |
+| `step`             | number   | 1          | step in which increments/decrements have to be made                         |
+| `value`            | number   |            | current value of the slider                                                 |
+| `orientation`      | string   | horizontal | orientation of the slider                                                   |
+| `tooltip`          | boolean  | true       | show or hide tooltip                                                        |
+| `reverse`          | boolean  | false      | reverse direction of vertical slider (top-bottom)                           |
+| `labels`           | object   | {}         | object containing key-value pairs. `{ 0: 'Low', 50: 'Medium', 100: 'High'}` |
+| `handleLabel`      | string   | ''         | string label to appear inside slider handles                                |
+| `format`           | function |            | function to format and display the value in label or tooltip                |
+| `onChangeStart`    | function |            | function gets called whenever the user starts dragging the slider handle    |
+| `onChange`         | function |            | function gets called whenever the slider handle is being dragged or clicked |
+| `onChangeComplete` | function |            | function gets called whenever the user stops dragging the slider handle.    |
 
 ## Development
+
 To work on the project locally, you need to pull its dependencies and run `npm start`.
 
 ```bash
@@ -154,11 +166,12 @@ $ npm start
 ```
 
 ## Issues
+
 Feel free to contribute. Submit a Pull Request or open an issue for further discussion.
 
 ## License
-MIT
 
+MIT
 
 [npm_img]: https://img.shields.io/npm/v/react-rangeslider.svg?style=flat-square
 [npm_site]: https://www.npmjs.org/package/react-rangeslider
