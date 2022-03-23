@@ -98,7 +98,7 @@ class Slider extends Component {
     const handlePos = this.handle[`offset${dimension}`];
 
     this.setState({
-      limit: sliderPos - handlePos,
+      limit: (sliderPos - handlePos) * (extendedMax / max),
       grab: handlePos / 2,
     });
   };
