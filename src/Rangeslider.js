@@ -92,7 +92,7 @@ class Slider extends Component {
       // for shallow rendering
       return;
     }
-    const { orientation } = this.props;
+    const { orientation, extendedMax, max } = this.props;
     const dimension = capitalize(constants.orientation[orientation].dimension);
     const sliderPos = this.slider[`offset${dimension}`];
     const handlePos = this.handle[`offset${dimension}`];
